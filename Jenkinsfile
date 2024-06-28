@@ -3,7 +3,10 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh 'mvn -B -DskipTests clean package'
+                // Checkout the code from Git
+                checkout scm
+                // Build with Maven
+                sh 'mvn -DskipTests clean package'
             }
         }
     }
