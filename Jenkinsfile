@@ -1,12 +1,16 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
-            steps{
+        stage('Checkout') {
+            steps {
                 // Checkout the code from Git
-                checkout scm
-                // Build with Maven
-                bat 'mvn -B -DskipTests clean package'
+                git 'https://github.com/aali9090/simple-java-maven-app.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build and test with Maven
+                bat 'mvn clean package'
             }
         }
     }
